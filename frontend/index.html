@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>Arvan Scanner Desktop</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container" id="app">
+        <header class="card header-card">
+            <h1>Arvan Scanner</h1>
+        </header>
+
+        <div class="main-content">
+            <aside class="sidebar">
+                <div class="card">
+                    <h3>تنظیمات اسکن</h3>
+                    
+                    <div class="form-group">
+                        <label>تعداد کانکشن همزمان (Threads):</label>
+                        <input type="number" id="concurrency" value="150" min="10" max="1000">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>نوع پینگ:</label>
+                        <select id="pingMode" class="custom-select">
+                            <option value="tcp">TCP (سریع‌تر)</option>
+                            <option value="tls">TLS Handshake (دقیق‌تر)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="sniGroup" style="display: none;">
+                        <label>دامنه SNI (مثال: snapp.ir):</label>
+                        <input type="text" id="sniHost" value="snapp.ir" placeholder="آدرس دامنه...">
+                    </div>
+
+
+
+                    <h4 style="margin-bottom: 5px;">رنج‌های آی‌پی:</h4>
+                    <div style="display: flex; gap: 5px; margin-bottom: 10px;">
+                        <button id="refreshIpsBtn" class="btn-mini" style="padding: 4px 8px; font-size: 0.8rem; background-color: var(--bg-info-t1-1-focus);">🔄 آپدیت لیست</button>
+                        <button id="toggleSelectBtn" class="btn-mini" style="padding: 4px 8px; font-size: 0.8rem;">تغییر انتخاب همه</button>
+                    </div>
+                    <div class="ranges-list" id="rangesList">
+                        <div style="padding: 1rem; text-align: center;">در حال دریافت آی‌پی‌های آنلاین آروان... ⏳</div>
+                    </div>
+
+                    <button id="startBtn" class="btn-primary" style="margin-top: 1rem;">شروع اسکن 🚀</button>
+                </div>
+            </aside>
+
+            <section class="results-section">
+                <div class="card status-card">
+                    <div class="status-header">
+                        <h3 id="statusText">آماده برای اسکن...</h3>
+                        <span id="progressText">۰ / ۰</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" id="progressBar"></div>
+                    </div>
+                </div>
+
+                <div class="card table-card">
+                    <div class="table-header">
+                        <h3>نتایج (آی‌پی‌های سالم)</h3>
+                        <button id="copyBtn" class="btn-secondary">کپی همه</button>
+                    </div>
+                    <div class="table-container" dir="ltr">
+                        <table dir="rtl">
+                            <thead>
+                                <tr>
+                                    <th data-sort="ip">آی‌پی (IP Address) <span class="sort-icon"></span></th>
+                                    <th data-sort="latency">پینگ (Latency) <span class="sort-icon">↓</span></th>
+                                    <th data-sort="jitter">جیتر (Jitter) <span class="sort-icon"></span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsBody">
+                                <!-- Results -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script type="module" src="./src/main.js"></script>
+</body>
+</html>
