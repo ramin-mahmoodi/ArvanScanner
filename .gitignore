@@ -1,6 +1,7 @@
-buwails.json
-/build/bin/
+build/bin
+wails.json
 *.exe
 *.zip
-node_modules
-frontend/dist
+node_modules/
+frontend/dist/
+frontend/node_modules/
