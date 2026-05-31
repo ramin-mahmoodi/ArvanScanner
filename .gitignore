@@ -1,3 +1,6 @@
-build/bin
+buwails.json
+/build/bin/
+*.exe
+*.zip
 node_modules
 frontend/dist
